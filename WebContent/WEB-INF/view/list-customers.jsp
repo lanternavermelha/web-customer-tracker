@@ -6,6 +6,10 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>List customers</title>
+
+<!-- reference our style sheet -->
+<link type="text/css" rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/style.css" />
 </head>
 <body>
 
@@ -33,9 +37,9 @@
 							<td>${tempCustomer.lastName}</td>
 							<td>${tempCustomer.email}</td>
 						</tr>
-						
+
 					</c:forEach>
-					 
+
 				</table>
 			</div>
 		</div>
