@@ -26,13 +26,17 @@ public class CustomerController {
 		List<Customer> theCustomers = customerService.getCustomers();
 		
 		//add the customers to the model
-		theModel.addAttribute("customers", theCustomers);
+		theModel.addAttribute("customer", theCustomers);
 		
 		return "list-customers";
 	}
 	
 	@GetMapping("/showFormForAdd")
 	public String showFormForAdd(Model theModel) {
+		Customer theCustomer = new Customer();
+		
+		theModel.addAttribute("customer", theCustomer);
+		
 		return "customer-form";
 	}
 
