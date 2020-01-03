@@ -16,21 +16,32 @@ public class CustomerDAOImpl implements CustomerDAO {
 	//need to inject the session factory
 	@Autowired
 	private SessionFactory sessionFactory;
-	
+
 	@Override
 	public List<Customer> getCustomers() {
-		
+
+		//get the current Hibernate session
+		Session currentSession = sessionFactory.getCurrentSession();
+
+		//create query
+		Query<Customer> theQuery = currentSession.createQuery("from Customer", Customer.class);
+
+		//get the list of customers from the query
+		List<Customer> customers = theQuery.getResultList();
+
+		//return the results
+		return customers;
+	}
+
+	@Override
+	public void saveCustomer(Customer theCustomer) {
+
 		//get the current Hibernate session
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		//create query
-		Query<Customer> theQuery = currentSession.createQuery("from Customer", Customer.class);
-		
-		//get the list of customers from the query
-		List<Customer> customers = theQuery.getResultList();
-		
-		//return the results
-		return customers;
+		//save the customer
+		currentSession.save(theCustomer);
+
 	}
 
 }
