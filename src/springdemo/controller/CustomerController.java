@@ -8,22 +8,22 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import springdemo.dao.CustomerDAO;
 import springdemo.entity.Customer;
+import springdemo.service.CustomerService;
 
 @Controller
 @RequestMapping("/customer")
 public class CustomerController {
 	
-	//need to inject the customer DAO
+	//need to inject the customer service
 	@Autowired
-	private CustomerDAO customerDAO;
+	private CustomerService customerService;
 	
 	@GetMapping("/list")
 	public String listCustomer(Model theModel) {
 		
-		//get customers from the dao
-		List<Customer> theCustomers = customerDAO.getCustomers();
+		//get customers from the customer service
+		List<Customer> theCustomers = customerService.getCustomers();
 		
 		//add the customers to the model
 		theModel.addAttribute("customers", theCustomers);
